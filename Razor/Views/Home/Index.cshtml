@@ -1,0 +1,69 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+
+    string nome = "Marco";
+    string cognome = "Celegato";
+
+
+    string frase = "nel mezzo del cammin di nostra vita";
+    int counter = 0;
+    foreach (char lettera in frase)
+    {
+        if (lettera == 'a')
+        {
+            counter++;
+        }
+    }
+
+
+    Random random = new Random();
+
+    List<int> numeri = new List<int>();
+    for (int i = 0; i < 20; i++)
+    {
+        numeri.Add(random.Next(1, 91));
+    }
+
+    List<int> numeriFiltrati = numeri.Where(n => n >= 20 && n <= 70).ToList();
+
+
+    DateTime now = DateTime.Now;
+
+    string dataOraFormatted = now.ToString("yyyy-MM-dd HH:mm:ss");
+
+
+    DateTime setteGiorniFa = now.AddDays(-7);
+
+    string nomeGiornoSettimanaOggi = now.ToString("dddd");
+
+    DateTime traUnAnno = now.AddYears(1);
+    string nomeGiornoSettimanaTraUnAnno = traUnAnno.ToString("dddd");
+
+}
+
+@functions {
+    public int Sum(int n)
+    {
+        int sum = 0;
+        for (int i = 1; i <= n; i++)
+        {
+            sum += i;
+        }
+        return sum;
+    }
+}
+
+
+<h2>@nome @cognome</h2>
+
+<span>@Sum(5)</span>
+
+<p>La lettera 'a' appare @counter volte nella frase "@frase".</p>
+
+<p>Ecco i numeri compresi tra 20 e 70: @string.Join(", ", numeriFiltrati).</p>
+
+<p>La data e l'ora attuale sono: @dataOraFormatted</p>
+
+<p>La data di 7 giorni fa è: @setteGiorniFa.ToString("yyyy-MM-dd")</p>
+<p>Oggi è @nomeGiornoSettimanaOggi</p>
+<p>Tra un anno, nello stesso giorno e mese di oggi, sarà @nomeGiornoSettimanaTraUnAnno</p>
